@@ -1,0 +1,451 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Nov 12 20:46:26 2018
+
+@author: Gsond001
+
+working directory: /Users/Gsond001/Desktop/PyCourse
+
+"""
+#DocString:
+
+"""    
+       A) An Introduction: 
+       Based on some concepts from Charlie the Unicorn. 
+       You are a Unicorn looking for the Magical promised land. In order to
+       get to this land you have to pass three obstacles. Some mystical 
+       creatures will appear to guide you through the way.If you pass them 
+       succesfully you wiil be granted access to a land filled with rainbows,
+       glitter, cookies, candy and PIZZA.
+        
+       Obstacle 1) You see a random kitten
+       Obstacle 2) Guess how many licks it takes to take to the core of the lolipop
+       Obstacle 3) In order to have proven yourself a worthy unicorn you must answer the question..
+    
+      B) Known Bugs and/or Error: 
+        None
+"""
+
+
+import random
+from sys import exit
+
+#Game Introduction
+def adventure_start():
+    global unicorn_name
+    print("Hello Welcome to an Amazing Adventure to Magical Land")
+    print("""
+          
+  ___    _ ,---.   .--..-./`)     _______      ,-----.    .-------.    ,---.   .--. 
+.'   |  | ||    \  |  |\ .-.')   /   __  \   .'  .-,  '.  |  _ _   \   |    \  |  | 
+|   .'  | ||  ,  \ |  |/ `-' \  | ,_/  \__) / ,-.|  \ _ \ | ( ' )  |   |  ,  \ |  | 
+.'  '_  | ||  |\_ \|  | `-'`"`,-./  )      ;  \  '_ /  | :|(_ o _) /   |  |\_ \|  | 
+'   ( \.-.||  _( )_\  | .---. \  '_ '`)    |  _`,/ \ _/  || (_,_).' __ |  _( )_\  | 
+' (`. _` /|| (_ o _)  | |   |  > (_)  )  __: (  '\_/ \   ;|  |\ \  |  || (_ o _)  | 
+| (_ (_) _)|  (_,_)\  | |   | (  .  .-'_/  )\ `"/  \  ) / |  | \ `'   /|  (_,_)\  | 
+ \ /  . \ /|  |    |  | |   |  `-'`-'     /  '. \_/``".'  |  |  \    / |  |    |  | 
+  ``-'`-'' '--'    '--' '---'    `._____.'     '-----'    ''-'   `'-'  '--'    '--' 
+                                                                                    
+ 
+ _______     __                     __                    
+|   _   |.--|  |.--.--.-----.-----.|  |_.--.--.----.-----.
+|       ||  _  ||  |  |  -__|     ||   _|  |  |   _|  -__|
+|___|___||_____| \___/|_____|__|__||____|_____|__| |_____|
+                                                          
+
+    
+  
+  """)
+    
+    print("In order to start please choose your unicorn name")
+    unicorn_name= input('What is your unicorn name? \n >').capitalize()
+    print(f"Welcome to your Unicorn Adventure {unicorn_name}!")
+    input("Press Enter to continue.\n\n\n\n\n\n")
+    
+    stop_1()
+    
+    
+#Stage 1     
+def stop_1():
+    print(f"""You start on your journey and you see a kitten on the side of the path needing help.""")
+    input("Press enter to continue.\n")
+    print(f"{unicorn_name} will you stop and help the kitten?")
+    print("""
+          1. To Stop and help the Kitten 
+          2. Runaway and leave the kitty behind
+          """)
+        
+    response = input("\n>")
+    
+    if '1' in response or 'stop' in response or 'kitten' in response:
+        print(f"{unicorn_name} you are kind hearted.\n\n\n\n\n\n\n")
+        stop_2()
+    elif '2' in response or "runaway" in response or "leave" in response or "behind" in response:
+        fail()
+    else: 
+        print("Invalid Entry Try Again.")
+        stop_1()
+        
+    
+        
+
+#Stage 2        
+def stop_2():
+    print("You have decided to start to fly to Magical Land and you get hit by an owl on your way.")
+    print(""" 
+ _____               _     
+/  __ \             | |    
+| /  \/_ __ __ _ ___| |__  
+| |   | '__/ _` / __| '_ \ 
+| \__/\ | | (_| \__ \ | | |
+ \____/_|  \__,_|___/_| |_|
+ 
+ 
+""")
+
+    
+    print(""" The owl stops and says:
+            in order for you to continue you have to answer the questions below.\n\n\n """ )
+         
+        
+
+    print("How many licks does it take to get to the center of the lolipop? ")
+    print("You have 3 guesses to get the right answer. It should be between 1 and 5.\n")
+    
+
+    licks =random.randint(1,5)
+    guesses = 3
+    
+    
+    try:
+        while guesses > 0:
+            print("What is your Magical Guess?")
+            magical_guess = int(input("\n> "))
+
+
+            if magical_guess == licks:
+               print(f"Great Job! Good luck on your adventure {unicorn_name}!\n\n\n")
+               guesses = 0
+               stop_3()
+           
+            elif magical_guess != licks:
+                print("That is is incorrect, guess again." )
+                guesses -= 1
+                if guesses == 0:
+                    print(f"{unicorn_name} you ran out of guesses. The correct answer is {licks}.\n\n\n" )
+                    fail() 
+                    
+              
+    except:
+        print("Invalid Error")
+        input("Press Enter to go back")
+        stop_2()
+               
+                
+            
+    
+#Stage 3
+def stop_3():
+    print(f"{unicorn_name} you approach the gates to Magiacal land.")
+    print("""
+         A                                                                                            A
+        / \                                                                                          / \
+       _\_/_                                         /\  /\                                         _\_/_
+      / _ __\                                 /\     \/  \/     /\                                 / _ __\
+      \_____/                                 \/    <``><''>    \/                                 \_____/
+       |___|                           /\    <``>    TT  TT    <''>    /\                           |___|
+      /     \                          \/     TT     ||  ||     TT     \/                          /     \
+     /       \                  /\    <``>    ||     ||  ||     ||    <''>    /\                  /       \
+  __/____ ____\__               \/     TT    <||>._.<||  ||>._.<||>    TT     \/               __/____ ____\__
+ /_______________\       /\    <``>    ||>.=""||,.-. ||  || .-.,||""=.<||    <''>    /\       /_______________\
+ )_______________(       \/     TT    <||,.-.<||"   "||  ||"   "||>.-.,||>    TT     \/       )_______________(
+  |_|___|___|___|       <``>    ||>.=""||"   "||     ||  ||     ||"   "||""=.<||    <''>       |_|___|___|___|
+  |___|___|___|_| /\     TT    <||,.-.<||     ||"-_-"||  ||"-_-"||     ||>.-.,||>    TT     /\ |___|___|___|_|
+  |_|___|___|___| \/     ||>.=""||"   "||"-_-"||> .=<||  ||>=. <||"-_-"||"   "||""=.<||     \/ |_|___|___|___|
+  |___|___|___|_|<``>    ||,.-.<||     ||> .=<||>"   ||__||   "<||>=. <||     ||>.-.,||    <''>|___|___|___|_|
+  |_|___|___|___| TT    <||"   "||"-_-"||."   ||     | /\\|     ||   ".||"-_-"||"   "||>    TT |_|___|___|___|
+  |___|___|___|_| ||  ,* ||     ||> .=<||>    ||     ||()||     ||    <||>=. <||     || *,  || |___|___|___|_|
+  |_|___|___|___|_||>*  ,||"-_-"||."   ||     ||     | __/|     ||     ||   ".||"-_-"||,  *<||_|_|___|___|___|
+  |___|___|___|_|__|,.-.<||> .=<||>    ||     ||     ||  ||     ||     ||    <||>=. <||>.-.,|__|___|___|___|_|
+  |_|___|___|___| ||`   "||."   ||     ||     ||   ,<||  ||>,   ||     ||     ||   ".||"   '|| |_|___|___|___|
+  |___|___|___|_| ||"    ||>    ||     ||     ||>,","||  ||",",<||     ||     ||    <||    "|| |___|___|___|_|
+  |_|___|___|___| ||"-_-"||     ||     ||   ,<|| .-. ||  || .-. ||>,   ||     ||     ||"-_-"|| |_|___|___|___|
+  |___|___|___|_| ||> .=<||     ||     ||>," "||"   "||  ||"   "||" ",<||     ||     ||>=. <|| |___|___|___|_|
+  |_|___|___|___|_||>"   ||     ||>,_,<|| .-.<||     ||  ||     ||>.-. ||>,_,<||     ||   "<||_|_|___|___|___|
+  |___|___|___|_|__|     ||>,_,<|| .-. ||"   "||"-_-"||  ||"-_-"||"   "|| .-. ||>,_,<||     |__|___|___|___|_|
+  |_|___|___|___| ||>,_,<|| .-. ||"   "||     ||  .=<||  ||>=.  ||     ||"   "|| .-. ||>,_,<|| |_|___|___|___|
+  |___|___|___|_| || .-. ||"   "||     ||"-_-"||>"   ||  ||   "<||"-_-"||     ||"   "|| .-. || |___|___|___|_|
+  |_|___|___|___| ||"   "||     ||"-_-"||  .=<||     ||  ||     ||>=.  ||"-_-"||     ||"   "|| |_|___|___|___|
+  |___|___|___|_| ||     ||"-_-"||  .=<||>"   ||     ||  ||     ||   "<||>=.  ||"-_-"||     || |___|___|___|_|
+  |_|___|___|___|_||"-_-"||  .=<||>"   ||     ||     ||  ||     ||     ||   "<||>=.  ||"-_-"||_|_|___|___|___|
+  |___|___|___|_|__|  .=<||>"   ||     ||     ||     ||  ||     ||     ||     ||   "<||>=.  |__|___|___|___|_|
+  |_|___|___|___| ||>"   ||     ||     ||     ||     ||  ||     ||     ||     ||     ||   "<|| |_|___|___|___|
+  |___|___|___|_| ||     ||     ||     ||     ||     ||  ||     ||     ||     ||     ||     || |___|___|___|_|
+  |_|___|___|___| ||>___<||>___<||>___<||>___<||>___<||  ||>___<||>___<||>___<||>___<||>___<|| |_|___|___|___|
+  |___|___|___|_| "-----------------------------------"  "-----------------------------------" |___|___|_____|
+
+
+""")
+    
+    
+    
+    print(""""
+          A magical creature known as Apollo, the lab retierver comes down.
+          He says to you in order to pass to Magical land you must answer 2 questions.\n\n\n""")
+    
+    
+                
+    
+    question_list=["What are unicorns of the sea called?",
+                  "What is the color of a unicorn?", 
+                  "Do unicorn fart rainbows?", 
+                  "How many horns does a unicorn have?",
+                 "Are unicorns real?",
+                 "What part of the unicorn in known as the alicorn?",
+                  "How many colors in the Rainbow?"]
+   
+    questions = 2
+    
+    
+    while questions > 0:
+        question = random.choice(question_list)
+        
+        print(question)
+
+        if question == "What are unicorns of the sea called?":
+            print("1. Seacorns")
+            print("2. Narwhals")
+            print("3. Seahorse")
+            question_list.remove("What are unicorns of the sea called?")
+            
+            answer_1 = input("\n>").lower()
+            if "2" in answer_1 or "narwhal" in answer_1:
+                print(f"{unicorn_name} you really know your stuff.\n\n\n\n\n\n\n")
+                questions -=1
+                
+            elif "1" in answer_1 or "seacorns" in answer_1 or "3" in answer_1 or "seahorse" in answer_1:
+                print("What are you thinking!")
+                fail()
+            else:
+                print("Something went wrong. Try again.")
+                stop_3()
+                
+                
+
+        elif question == "What is the color of a unicorn?":
+            print("1. Blue, Purple, or Pink")
+            print("2. Red, Black, or Brown.")
+            print("3. Silver, White, or Gray")
+            question_list.remove("What is the color of a unicorn?")
+            
+            answer_2 = input("\n>").lower()
+            
+            if "3" in answer_2 or "silver" in answer_2 or "white" in answer_2 or "gray" in answer_2:
+                print(f"Great Job {unicorn_name}!\n\n\n\n\n\n\n")
+                questions -=1
+                
+            elif "1" in answer_2 or "brown" in answer_2 or "red" in answer_2 or "2" in answer_2 or "black" in answer_2 or "blue" in answer_2 or "purple" in answer_2 or "pink" in answer_2:
+                print("Are you even a unicorn?")
+                fail()
+            else:
+                print("Something went wrong. Try again.")
+                stop_3()
+        
+        elif question == "Do unicorn fart rainbows?":
+            print("1. Yes , Duh")
+            print("2. No")
+            question_list.remove("Do unicorn fart rainbows?")
+            
+            answer_3 = input("\n>").lower()
+            if "1" in answer_3 or "yes" in answer_3 or "duh" in answer_3:
+                print(f"Amazining Job {unicorn_name}!\n\n\n\n\n\n\n")
+                questions -=1
+                
+            elif "2" in answer_3 or "no" in answer_3:
+                print("You should know this!")
+                fail()
+            else:
+                print("Something went wrong. Try again.")
+                stop_3()
+        
+        elif question == "How many horns does a unicorn have?":
+            print("1")
+            print("5")
+            print("2")
+            question_list.remove("How many horns does a unicorn have?")
+           
+            answer_4 = input("\n>").lower()
+            
+            if "1" in answer_4 or "one" in answer_4:
+                print("Wow Great Work!\n\n\n\n\n\n\n")
+                questions -=1
+               
+            elif "2" in answer_4 or "two" in answer_4 or "5" in answer_4 or "five" in answer_4:
+                print("Are you even a unicorn?")
+                fail()
+            else:
+                print("Something went wrong. Try again.")
+                stop_3()
+        
+        elif question == "Are unicorns real?":
+            print("1.No!")
+            print("2.Yes!")
+            question_list.remove("Are unicorns real?")
+            answer_5 = input("\n>").lower()
+            
+            if "2" in answer_5 or "yes" in answer_5:
+                print(f"Great Job! {unicorn_name}!\n\n\n\n\n\n\n")
+                questions -=1
+                
+            elif "1" in answer_5 or "no" in answer_5:
+                print("What are you thinking!")
+                fail()
+            else:
+                print("Something went wrong. Try again.")
+                stop_3()
+        
+        elif question == "What part of the unicorn in known as the alicorn?":
+            print("1. Hooves")
+            print("2. Nose")
+            print("3. Horn")
+            question_list.remove("What part of the unicorn in known as the alicorn?")
+            answer_6 = input("\n>").lower()
+            
+            if "3" in answer_6 or "horn" in answer_6:
+                print(f"{unicorn_name} you really know your stuff.\n\n\n\n\n\n\n")
+                questions -=1
+                
+            
+            elif "2" in answer_6 or "nose" in answer_6 or "1" in answer_6 or "hooves" in answer_6:
+                print("You should know this!")
+                fail()
+            else:
+                print("Something went wrong. Try again.")
+                stop_3()
+       
+        elif question == "How many colors in the Rainbow?":
+            print("4")
+            print("7")
+            print("10")
+            question_list.remove("How many colors in the Rainbow?")
+            answer_7 = input("\n>").lower()
+            
+            if "7" in answer_7 or "seven" in answer_7:
+                print(f"Way to go {unicorn_name}!\n\n\n\n\n\n\n")
+                questions -=1
+                
+            elif "4" in answer_7 or "four" in answer_7 or "10" in answer_7 or "ten" in answer_7:
+                print("Are you even a unicorn?")
+                fail()
+            else:
+                print("Something went wrong. Try again.")
+                stop_3()
+        else:
+            print("You have entered an incorrect value.")
+            print("Please try again.")
+            stop_3()
+        
+    print("You have answered the questions correctly.\n\n\n\n\n\n\n")
+
+
+
+        
+    
+    print(""" 
+                                                 ,/
+                                                //
+                                              ,//
+                                  ___   /|   |//
+                              `__/\_ --(/|___/-/
+                           \|\_-\___ __-_`- /-/ \.
+                          |\_-___,-\_____--/_)' ) \
+                           \ -_ /     __ \( `( __`\|
+                           `\__|      |\)\ ) /(/|
+   ,._____.,            ',--//-|      \  |  '   /
+  /     __. \,          / /,---|       \       /
+ / /    _. \  \        `/`_/ _,'        |     |
+|  | ( (  \   |      ,/\'__/'/          |     |
+|  \  \`--, `_/_------______/           \(   )/
+| | \  \_. \,                            \___/\
+| |  \_   \  \                                 \
+\ \    \_ \   \   /                             \
+ \ \  \._  \__ \_|       |                       \
+  \ \___  \      \       |                        \
+   \__ \__ \  \_ |       \                         |
+   |  \_____ \  ____      |                        |
+   | \  \__ ---' .__\     |        |               |
+   \  \__ ---   /   )     |        \              /
+    \   \____/ / ()(      \          `---_       /|
+     \__________/(,--__    \_________.    |    ./ |
+       |     \ \  `---_\--,           \   \_,./   |
+       |      \  \_ ` \    /`---_______-\   \\    /
+        \      \.___,`|   /              \   \\   \
+         \     |  \_ \|   \              (   |:    |
+          \    \      \    |             /  / |    ;
+           \    \      \    \          ( `_'   \  |
+            \.   \      \.   \          `__/   |  |
+              \   \       \.  \                |  |
+               \   \        \  \               (  )
+                \   |        \  |              |  |
+                 |  \         \ \              I  `
+                 ( __;        ( _;            ('-_';
+                 |___\        \___:            \___:      
+   
+                     """)
+
+
+    print("Welcome to Magical land.\n\n\n")
+    print("A Land filled with Rainbows, Glitter, Candy, Cookies and.........")
+    print("PIZZZZZZAAAAAA!!!!\n\n\n")
+    print(""" 
+                                   ._
+                                   ,(  `-.
+                                 ,': `.   `.
+                               ,` *   `-.   \
+                             ,'  ` :+  = `.  `.
+                           ,~  (o):  .,   `.  `.
+                         ,'  ; :   ,(__) x;`.  ;
+                       ,'  :'  itz  ;  ; ; _,-'
+                     .'O ; = _' C ; ;'_,_ ;
+                   ,;  _;   ` : ;'_,-'   i'
+                 ,` `;(_)  0 ; ','       :
+               .';6     ; ' ,-'~
+             ,' Q  ,& ;',-.'
+           ,( :` ; _,-'~  ;
+         ,~.`c _','
+       .';^_,-' ~
+     ,'_;-''
+    ,,~
+    i'
+    
+    """)
+    
+    
+    
+    
+    play_again()
+
+#Play again
+def play_again():
+
+    print("Would you like to play again?")
+    print("Type in Yes or No")
+    choice= input("\n>").lower()
+    if "yes" in choice:
+        adventure_start()
+    elif "no" in choice:
+        exit
+    else:
+        print("Something went wrong. Pres enter to continue.")
+        play_again()
+
+
+#Fail Function
+def fail():
+    print(f"Shun the non-believer, Shun the non-believer, Shunnn {unicorn_name}")
+    input("Press Enter to Continue")
+    play_again()
+    
+
+adventure_start()
